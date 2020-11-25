@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Drawer /> should match the snapshot 1`] = `
+<DrawerWrapper
+  closable={true}
+  onClose={[Function]}
+  placement="right"
+  title="Drawer title"
+  visible={false}
+  width="350px"
+>
+  <div>
+    Drawer content
+  </div>
+</DrawerWrapper>
+`;

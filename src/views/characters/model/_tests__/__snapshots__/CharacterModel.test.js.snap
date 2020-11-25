@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharacterModel should return character data 1`] = `
+Object {
+  "created": "11/25/2020, 4:59:08 PM",
+  "episode": 0,
+  "gender": "Male",
+  "image": "",
+  "location": "Earth",
+  "name": "Rick Sanchez",
+  "origin": "Earth",
+  "species": "Alien",
+  "status": "Alive",
+  "type": "",
+}
+`;

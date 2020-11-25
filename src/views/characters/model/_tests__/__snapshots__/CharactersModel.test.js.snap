@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharactersModel should return characters data 1`] = `
+Object {
+  "characters": Array [
+    Object {
+      "id": 1,
+      "location": "Earth",
+      "name": "Rick Sanchez",
+      "origin": "Earth",
+      "species": "Alien",
+    },
+  ],
+  "pageInfo": Object {
+    "count": 1,
+    "next": null,
+    "pages": 1,
+    "prev": null,
+  },
+}
+`;

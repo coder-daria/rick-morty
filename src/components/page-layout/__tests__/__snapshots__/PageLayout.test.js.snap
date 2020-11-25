@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PageLayout /> should match the snapshot 1`] = `
+<div>
+  <styled.div>
+    <span>
+      Showing
+      <styled.span>
+        1
+      </styled.span>
+      of
+      <styled.span>
+        1
+      </styled.span>
+       entries
+    </span>
+  </styled.div>
+  <Styled(Table)
+    columns={
+      Array [
+        Object {
+          "dataIndex": "name",
+          "key": "name",
+          "title": "Name",
+        },
+        Object {
+          "dataIndex": "species",
+          "key": "species",
+          "title": "Species",
+        },
+        Object {
+          "dataIndex": "origin",
+          "key": "origin",
+          "title": "Origin",
+        },
+        Object {
+          "dataIndex": "location",
+          "key": "location",
+          "title": "Location",
+        },
+        Object {
+          "key": "action",
+          "render": [Function],
+          "title": "Action",
+        },
+      ]
+    }
+    dataSource={
+      Array [
+        Object {
+          "id": 1,
+          "location": Object {
+            "name": "Earth",
+          },
+          "name": "Rick Sanchez",
+          "origin": Object {
+            "name": "Earth",
+          },
+          "species": "Alien",
+        },
+      ]
+    }
+    loading={false}
+    onChange={[Function]}
+    pagination={
+      Object {
+        "pageSize": 20,
+        "position": Array [
+          "topLeft",
+        ],
+        "simple": true,
+        "total": 1,
+      }
+    }
+    rowKey={[Function]}
+    scroll={
+      Object {
+        "y": 700,
+      }
+    }
+    tableLayout="fixed"
+  />
+</div>
+`;

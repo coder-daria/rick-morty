@@ -7,6 +7,7 @@ import useCharactersFetchDetails from './hooks/use-characters-fetch-details';
 import { CHARACTERS_TABLE_COLUMN } from './constants';
 
 const DRAWER_TITLE = 'Character Details';
+
 function Characters() {
   const {
     character,

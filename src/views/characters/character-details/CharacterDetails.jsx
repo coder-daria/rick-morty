@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { number, shape, string } from 'prop-types';
+import { instanceOf, shape, string } from 'prop-types';
 import { Col, Divider } from 'antd';
 
 import CharacterModel from '../model/CharacterModel';
@@ -42,12 +42,12 @@ function CharacterDetails({ character }) {
 CharacterDetails.propTypes = {
   character: shape({
     created: string,
-    episode: number,
+    episode: instanceOf(Array),
     gender: string,
     image: string,
-    location: string,
+    location: instanceOf(Object),
     name: string,
-    origin: string,
+    origin: instanceOf(Object),
     species: string,
     status: string,
     type: string,
