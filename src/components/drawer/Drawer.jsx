@@ -17,7 +17,7 @@ function Drawer({ width, title, closable, placement, children }) {
   const isDrawerOpen = useReactiveVar(isDrawerOpenVar);
 
   const handleDrawerClose = useCallback(() => {
-    isDrawerOpenVar(false);
+    isDrawerOpenVar(null);
     selectedListItemVar(0);
   }, []);
 

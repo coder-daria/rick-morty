@@ -6,14 +6,13 @@ import useCharactersFetchDetails from './hooks/use-characters-fetch-details';
 
 import { CHARACTERS_TABLE_COLUMN } from './constants';
 
-const DRAWER_TITLE = 'Character Details';
+const VIEW_TITLE = 'characters';
 
+const DRAWER_TITLE = 'Character Details';
 function Characters() {
   const {
     character,
     characters,
-    currentPage,
-    error,
     isDrawerOpen,
     loading,
     pageInfo,
@@ -24,14 +23,13 @@ function Characters() {
     <div>
       <PageLayout
         columns={CHARACTERS_TABLE_COLUMN}
+        loading={loading}
         pageInfo={pageInfo}
         setCurrentPage={setCurrentPage}
         tableData={characters}
-        loading={loading}
-        error={error}
-        currentPage={currentPage}
+        title={VIEW_TITLE}
       />
-      {isDrawerOpen && character && (
+      {isDrawerOpen === VIEW_TITLE && character && (
         <Drawer title={DRAWER_TITLE}>
           <CharacterDetails character={character} />
         </Drawer>

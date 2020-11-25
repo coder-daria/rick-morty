@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import { Tabs } from 'antd';
 
 import { Container, StyledTabs } from './App.styles';
-import { Characters } from './views';
+import { Characters, Episodes } from './views';
 
 const TABS_DATA = [
   {
@@ -12,7 +12,7 @@ const TABS_DATA = [
     tabName: 'Characters',
   },
   {
-    content: 'In process',
+    content: <Episodes />,
     tabName: 'Episodes',
   },
   {

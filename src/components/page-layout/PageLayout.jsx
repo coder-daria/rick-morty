@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { instanceOf, func, number, shape, bool } from 'prop-types';
+import { instanceOf, func, number, shape, bool, string } from 'prop-types';
 import { Button } from 'antd';
 
 import { EMPTY_ARRAY, EMPTY_OBJECT } from '../../common/constants';
@@ -7,14 +7,14 @@ import { selectedListItemVar, isDrawerOpenVar } from '../../apollo/cache';
 
 import { StyledTable, Bold, PageInfo } from './PageLayout.styles';
 
-const getActionColumnData = () => ({
-  title: 'Action',
-  key: 'action',
+const getActionColumnData = title => ({
+  title: '',
+  key: '',
   render: data => (
     <Button
       onClick={() => {
         selectedListItemVar(data.id);
-        isDrawerOpenVar(true);
+        isDrawerOpenVar(title);
       }}
     >
       View
@@ -22,7 +22,14 @@ const getActionColumnData = () => ({
   ),
 });
 
-function PageLayout({ columns, loading, pageInfo, tableData, setCurrentPage }) {
+function PageLayout({
+  columns,
+  loading,
+  pageInfo,
+  setCurrentPage,
+  tableData,
+  title,
+}) {
   const [nextPage, setNextPage] = useState(2);
 
   const handleSetCurrentPage = useCallback(
@@ -40,7 +47,7 @@ function PageLayout({ columns, loading, pageInfo, tableData, setCurrentPage }) {
       <PageInfo>
         <span>
           Showing<Bold>{tableData?.length}</Bold>
-          of<Bold>{pageInfo?.count}</Bold> entries
+          of<Bold>{pageInfo?.count}</Bold>entries
         </span>
       </PageInfo>
       <StyledTable
@@ -48,7 +55,7 @@ function PageLayout({ columns, loading, pageInfo, tableData, setCurrentPage }) {
         tableLayout='fixed'
         loading={loading}
         onChange={handleSetCurrentPage}
-        columns={[...columns, getActionColumnData()]}
+        columns={[...columns, getActionColumnData(title)]}
         dataSource={tableData}
         pagination={{
           position: ['topLeft'],
@@ -63,22 +70,23 @@ function PageLayout({ columns, loading, pageInfo, tableData, setCurrentPage }) {
 }
 
 PageLayout.propTypes = {
-  loading: bool.isRequired,
   columns: instanceOf(Array),
-  tableData: instanceOf(Array),
+  loading: bool.isRequired,
   pageInfo: shape({
-    pages: number,
     count: number,
     next: number,
+    pages: number,
     prev: number,
   }),
   setCurrentPage: func.isRequired,
+  tableData: instanceOf(Array),
+  title: string.isRequired,
 };
 
 PageLayout.defaultProps = {
   columns: EMPTY_ARRAY,
-  tableData: EMPTY_ARRAY,
   pageInfo: EMPTY_OBJECT,
+  tableData: EMPTY_ARRAY,
 };
 
 export default PageLayout;
