@@ -1,3 +1,5 @@
+import { formatDate } from '../../../common/utils/date';
+
 export default ({
   created,
   episode,
@@ -12,7 +14,7 @@ export default ({
 } = {}) => ({
   name,
   image,
-  created: created ? new Date(created).toLocaleString() : undefined,
+  created: created ? formatDate(created) : undefined,
   episode: episode?.length,
   gender,
   location: location?.name,

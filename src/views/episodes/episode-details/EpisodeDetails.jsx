@@ -2,30 +2,26 @@ import React, { useMemo } from 'react';
 import { instanceOf, shape, string } from 'prop-types';
 import { Col } from 'antd';
 
-import CharacterModel from '../model/EpisodeModel';
+import { renderCharactersNames } from '../../../common/utils/characters';
+
+import EpisodeModel from '../model/EpisodeModel';
 
 import { StyledRow } from './EpisodeDetails.styles';
 
 const NO_DATA_PLACEHOLDER = '-';
 
-function renderCharactersNames(characters) {
-  return characters.map(({ name, index }) => (
-    <div key={`${name + index}`}>{name}</div>
-  ));
-}
-
 function EpisodeDetails({ episode }) {
-  const characterDetails = useMemo(() => CharacterModel(episode), [episode]);
+  const episodeDetails = useMemo(() => EpisodeModel(episode), [episode]);
 
   return (
     <div>
-      {Object.keys(characterDetails).map(item => (
+      {Object.keys(episodeDetails).map(item => (
         <StyledRow key={item}>
           <Col span={12}>{item}</Col>
           <Col span={12}>
             {item === 'characters'
-              ? renderCharactersNames(characterDetails[item])
-              : characterDetails[item] || NO_DATA_PLACEHOLDER}
+              ? renderCharactersNames(episodeDetails[item])
+              : episodeDetails[item] || NO_DATA_PLACEHOLDER}
           </Col>
         </StyledRow>
       ))}

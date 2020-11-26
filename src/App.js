@@ -3,8 +3,8 @@ import 'sanitize.css';
 import 'antd/dist/antd.css';
 import { Tabs } from 'antd';
 
+import { Characters, Episodes, Locations } from './views';
 import { Container, StyledTabs } from './App.styles';
-import { Characters, Episodes } from './views';
 
 const TABS_DATA = [
   {
@@ -16,7 +16,7 @@ const TABS_DATA = [
     tabName: 'Episodes',
   },
   {
-    content: 'In process',
+    content: <Locations />,
     tabName: 'Locations',
   },
 ];

@@ -1,6 +1,6 @@
 import { InMemoryCache, makeVar } from '@apollo/client';
 
-export const selectedListItemVar = makeVar(1);
+export const selectedListItemVar = makeVar(0);
 
 function mergeLists(existing, incoming) {
   let results = [];
@@ -16,6 +16,7 @@ function mergeLists(existing, incoming) {
     results,
   };
 }
+
 const cache = new InMemoryCache({
   typePolicies: {
     Query: {
@@ -27,6 +28,12 @@ const cache = new InMemoryCache({
           },
         },
         episodes: {
+          keyArgs: [],
+          merge(existing, incoming) {
+            return mergeLists(existing, incoming);
+          },
+        },
+        locations: {
           keyArgs: [],
           merge(existing, incoming) {
             return mergeLists(existing, incoming);

@@ -1,25 +1,25 @@
 import { useMemo, useState, useEffect } from 'react';
 import { useQuery, useReactiveVar } from '@apollo/client';
 
-import { GET_EPISODES, GET_EPISODE_BY_ID } from '../../../apollo/queries';
+import { GET_LOCATIONS, GET_LOCATION_BY_ID } from '../../../apollo/queries';
 import { selectedListItemVar } from '../../../apollo/cache';
 
-import EpisodesModel from '../model/EpisodesModel';
+import LocationsModel from '../model/LocationsModel';
 
-const useEpisodesFetchDetails = () => {
+const useLocationsFetchDetails = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isDrawerOpen, toggleDrawer] = useState(false);
 
   const selectedItemId = useReactiveVar(selectedListItemVar);
 
-  const { data, loading, fetchMore, error } = useQuery(GET_EPISODES, {
+  const { data, loading, fetchMore, error } = useQuery(GET_LOCATIONS, {
     fetchPolicy: 'cache-first',
     variables: {
       page: currentPage,
     },
   });
 
-  const { data: { episode } = {} } = useQuery(GET_EPISODE_BY_ID, {
+  const { data: { location } = {} } = useQuery(GET_LOCATION_BY_ID, {
     variables: {
       skip: !selectedItemId,
       id: selectedItemId,
@@ -36,13 +36,14 @@ const useEpisodesFetchDetails = () => {
     }
   }, [fetchMore, currentPage]);
 
-  const { pageInfo, episodes } = useMemo(() => EpisodesModel(data), [data]);
+  const { pageInfo, locations } = useMemo(() => LocationsModel(data), [data]);
 
   return {
-    episode,
-    episodes,
-    isDrawerOpen,
+    location,
+    locations,
+    currentPage,
     error,
+    isDrawerOpen,
     loading,
     pageInfo,
     setCurrentPage,
@@ -50,4 +51,4 @@ const useEpisodesFetchDetails = () => {
   };
 };
 
-export default useEpisodesFetchDetails;
+export default useLocationsFetchDetails;
