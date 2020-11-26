@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Drawer, PageLayout } from '../../components';
+import { Drawer, Error, PageLayout } from '../../components';
 import EpisodeDetails from './episode-details/EpisodeDetails';
 import useEpisodesFetchDetails from './hooks/use-episodes-fetch-details';
 
@@ -19,6 +19,10 @@ function Episodes() {
     setCurrentPage,
     toggleDrawer,
   } = useEpisodesFetchDetails();
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <div>

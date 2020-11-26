@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Drawer, PageLayout } from '../../components';
+import { Drawer, Error, PageLayout } from '../../components';
 import LocationDetails from './location-details/LocationDetails';
 import useLocationsFetchDetails from './hooks/use-locations-fetch-details';
 
@@ -10,6 +10,7 @@ const DRAWER_TITLE = 'Location Details';
 
 function Locations() {
   const {
+    error,
     isDrawerOpen,
     loading,
     location,
@@ -18,6 +19,10 @@ function Locations() {
     setCurrentPage,
     toggleDrawer,
   } = useLocationsFetchDetails();
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <div>

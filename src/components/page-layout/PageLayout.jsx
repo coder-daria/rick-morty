@@ -1,7 +1,11 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { instanceOf, func, number, shape, bool } from 'prop-types';
 
-import { EMPTY_ARRAY, EMPTY_OBJECT } from '../../common/constants';
+import {
+  EMPTY_ARRAY,
+  EMPTY_OBJECT,
+  EMPTY_STRING,
+} from '../../common/constants/index';
 import { selectedListItemVar } from '../../apollo/cache';
 
 import { StyledTable, StyledButton, Bold, PageInfo } from './PageLayout.styles';
@@ -34,8 +38,8 @@ function PageLayout({
 
   const actionColumn = useMemo(
     () => ({
-      title: '',
-      key: '',
+      title: EMPTY_STRING,
+      key: EMPTY_STRING,
       align: 'right',
       render: data => renderActionButton(data),
     }),
