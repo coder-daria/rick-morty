@@ -4,13 +4,13 @@ import { useQuery, useReactiveVar } from '@apollo/client';
 import { GET_CHARACTERS, GET_CHARACTER_BY_ID } from '../../../apollo/queries';
 
 import CharactersModel from '../model/CharactersModel';
-import { isDrawerOpenVar, selectedListItemVar } from '../../../apollo/cache';
+import { selectedListItemVar } from '../../../apollo/cache';
 
 const useCharactersFetchDetails = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isDrawerOpen, toggleDrawer] = useState(false);
 
   const selectedItemId = useReactiveVar(selectedListItemVar);
-  const isDrawerOpen = useReactiveVar(isDrawerOpenVar);
 
   const { data, loading, fetchMore, error } = useQuery(GET_CHARACTERS, {
     fetchPolicy: 'cache-first',
@@ -39,14 +39,15 @@ const useCharactersFetchDetails = () => {
   const { pageInfo, characters } = useMemo(() => CharactersModel(data), [data]);
 
   return {
-    error,
-    pageInfo,
-    characters,
-    setCurrentPage,
-    loading,
-    isDrawerOpen,
     character,
+    characters,
     currentPage,
+    error,
+    isDrawerOpen,
+    loading,
+    pageInfo,
+    setCurrentPage,
+    toggleDrawer,
   };
 };
 

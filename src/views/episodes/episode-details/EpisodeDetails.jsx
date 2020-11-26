@@ -3,16 +3,19 @@ import { instanceOf, shape, string } from 'prop-types';
 import { Col } from 'antd';
 
 import CharacterModel from '../model/EpisodeModel';
+
 import { StyledRow } from './EpisodeDetails.styles';
 
 const NO_DATA_PLACEHOLDER = '-';
 
+function renderCharactersNames(characters) {
+  return characters.map(({ name, index }) => (
+    <div key={`${name + index}`}>{name}</div>
+  ));
+}
+
 function EpisodeDetails({ episode }) {
   const characterDetails = useMemo(() => CharacterModel(episode), [episode]);
-
-  const renderCharactersNames = characters => {
-    return characters.map(({ name }) => <div key={`${name}`}>{name}</div>);
-  };
 
   return (
     <div>
@@ -32,10 +35,10 @@ function EpisodeDetails({ episode }) {
 
 EpisodeDetails.propTypes = {
   episode: shape({
+    characters: instanceOf(Array),
     created: string,
     'air date': string,
     episode: string,
-    characters: instanceOf(Array),
   }).isRequired,
 };
 

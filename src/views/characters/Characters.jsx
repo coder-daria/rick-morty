@@ -6,8 +6,6 @@ import useCharactersFetchDetails from './hooks/use-characters-fetch-details';
 
 import { CHARACTERS_TABLE_COLUMN } from './constants';
 
-const VIEW_TITLE = 'characters';
-
 const DRAWER_TITLE = 'Character Details';
 function Characters() {
   const {
@@ -17,6 +15,7 @@ function Characters() {
     loading,
     pageInfo,
     setCurrentPage,
+    toggleDrawer,
   } = useCharactersFetchDetails();
 
   return (
@@ -27,10 +26,14 @@ function Characters() {
         pageInfo={pageInfo}
         setCurrentPage={setCurrentPage}
         tableData={characters}
-        title={VIEW_TITLE}
+        toggleDrawer={toggleDrawer}
       />
-      {isDrawerOpen === VIEW_TITLE && character && (
-        <Drawer title={DRAWER_TITLE}>
+      {isDrawerOpen && character && (
+        <Drawer
+          isDrawerOpen={isDrawerOpen}
+          onClose={toggleDrawer}
+          title={DRAWER_TITLE}
+        >
           <CharacterDetails character={character} />
         </Drawer>
       )}

@@ -1,17 +1,15 @@
 import React from 'react';
 
 import { Drawer, PageLayout } from '../../components';
+import EpisodeDetails from './episode-details/EpisodeDetails';
 import useEpisodesFetchDetails from './hooks/use-episodes-fetch-details';
 
-import EpisodeDetails from './episode-details/EpisodeDetails';
 import { EPISODES_TABLE_COLUMN } from './constants';
 
 const DRAWER_TITLE = 'Episode Details';
-const VIEW_TITLE = 'episodes';
 
 function Episodes() {
   const {
-    currentPage,
     episode,
     episodes,
     error,
@@ -19,22 +17,26 @@ function Episodes() {
     loading,
     pageInfo,
     setCurrentPage,
+    toggleDrawer,
   } = useEpisodesFetchDetails();
 
   return (
     <div>
       <PageLayout
-        title={VIEW_TITLE}
         columns={EPISODES_TABLE_COLUMN}
-        currentPage={currentPage}
         error={error}
         loading={loading}
         pageInfo={pageInfo}
         setCurrentPage={setCurrentPage}
         tableData={episodes}
+        toggleDrawer={toggleDrawer}
       />
-      {isDrawerOpen === VIEW_TITLE && episode && (
-        <Drawer title={DRAWER_TITLE}>
+      {isDrawerOpen && episode && (
+        <Drawer
+          isDrawerOpen={isDrawerOpen}
+          onClose={toggleDrawer}
+          title={DRAWER_TITLE}
+        >
           <EpisodeDetails episode={episode} />
         </Drawer>
       )}

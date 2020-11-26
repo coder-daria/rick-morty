@@ -2,15 +2,15 @@ import { useMemo, useState, useEffect } from 'react';
 import { useQuery, useReactiveVar } from '@apollo/client';
 
 import { GET_EPISODES, GET_EPISODE_BY_ID } from '../../../apollo/queries';
-import { isDrawerOpenVar, selectedListItemVar } from '../../../apollo/cache';
+import { selectedListItemVar } from '../../../apollo/cache';
 
 import EpisodesModel from '../model/EpisodesModel';
 
 const useCharactersFetchDetails = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isDrawerOpen, toggleDrawer] = useState(false);
 
   const selectedItemId = useReactiveVar(selectedListItemVar);
-  const isDrawerOpen = useReactiveVar(isDrawerOpenVar);
 
   const { data, loading, fetchMore } = useQuery(GET_EPISODES, {
     fetchPolicy: 'cache-first',
@@ -45,6 +45,7 @@ const useCharactersFetchDetails = () => {
     loading,
     pageInfo,
     setCurrentPage,
+    toggleDrawer,
   };
 };
 

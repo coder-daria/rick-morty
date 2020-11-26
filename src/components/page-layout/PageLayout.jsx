@@ -1,26 +1,11 @@
-import React, { useCallback, useState } from 'react';
-import { instanceOf, func, number, shape, bool, string } from 'prop-types';
+import React, { useCallback, useState, useMemo } from 'react';
+import { instanceOf, func, number, shape, bool } from 'prop-types';
 import { Button } from 'antd';
 
 import { EMPTY_ARRAY, EMPTY_OBJECT } from '../../common/constants';
-import { selectedListItemVar, isDrawerOpenVar } from '../../apollo/cache';
+import { selectedListItemVar } from '../../apollo/cache';
 
 import { StyledTable, Bold, PageInfo } from './PageLayout.styles';
-
-const getActionColumnData = title => ({
-  title: '',
-  key: '',
-  render: data => (
-    <Button
-      onClick={() => {
-        selectedListItemVar(data.id);
-        isDrawerOpenVar(title);
-      }}
-    >
-      View
-    </Button>
-  ),
-});
 
 function PageLayout({
   columns,
@@ -28,9 +13,32 @@ function PageLayout({
   pageInfo,
   setCurrentPage,
   tableData,
-  title,
+  toggleDrawer,
 }) {
   const [nextPage, setNextPage] = useState(2);
+
+  const renderActionButton = useCallback(
+    data => (
+      <Button
+        onClick={() => {
+          selectedListItemVar(data.id);
+          toggleDrawer(true);
+        }}
+      >
+        View
+      </Button>
+    ),
+    [toggleDrawer],
+  );
+
+  const actionColumn = useMemo(
+    () => ({
+      title: '',
+      key: '',
+      render: data => renderActionButton(data),
+    }),
+    [renderActionButton],
+  );
 
   const handleSetCurrentPage = useCallback(
     e => {
@@ -55,7 +63,7 @@ function PageLayout({
         tableLayout='fixed'
         loading={loading}
         onChange={handleSetCurrentPage}
-        columns={[...columns, getActionColumnData(title)]}
+        columns={[...columns, actionColumn]}
         dataSource={tableData}
         pagination={{
           position: ['topLeft'],
@@ -80,7 +88,7 @@ PageLayout.propTypes = {
   }),
   setCurrentPage: func.isRequired,
   tableData: instanceOf(Array),
-  title: string.isRequired,
+  toggleDrawer: func.isRequired,
 };
 
 PageLayout.defaultProps = {

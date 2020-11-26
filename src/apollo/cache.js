@@ -1,7 +1,6 @@
 import { InMemoryCache, makeVar } from '@apollo/client';
 
 export const selectedListItemVar = makeVar(1);
-export const isDrawerOpenVar = makeVar(false);
 
 function mergeLists(existing, incoming) {
   let results = [];

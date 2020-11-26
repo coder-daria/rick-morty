@@ -1,25 +1,30 @@
 import React, { useCallback } from 'react';
-import { bool, node, string } from 'prop-types';
+import { bool, func, node, string } from 'prop-types';
 import { Drawer as AntdDrawer } from 'antd';
-import { useReactiveVar } from '@apollo/client';
 
-import { isDrawerOpenVar, selectedListItemVar } from '../../apollo/cache';
+import { selectedListItemVar } from '../../apollo/cache';
 
 const DRAWER_PROPS = {
-  PLACEMENT: 'right',
   CLOSABLE: true,
+  PLACEMENT: 'right',
   WIDTH: '350px',
 };
 
 const { PLACEMENT, CLOSABLE, WIDTH } = DRAWER_PROPS;
 
-function Drawer({ width, title, closable, placement, children }) {
-  const isDrawerOpen = useReactiveVar(isDrawerOpenVar);
-
+function Drawer({
+  children,
+  closable,
+  isDrawerOpen,
+  onClose,
+  placement,
+  title,
+  width,
+}) {
   const handleDrawerClose = useCallback(() => {
-    isDrawerOpenVar(null);
+    onClose();
     selectedListItemVar(0);
-  }, []);
+  }, [onClose]);
 
   return (
     <AntdDrawer
@@ -38,6 +43,8 @@ function Drawer({ width, title, closable, placement, children }) {
 Drawer.propTypes = {
   children: node.isRequired,
   closable: bool,
+  isDrawerOpen: bool.isRequired,
+  onClose: func.isRequired,
   placement: string,
   title: string.isRequired,
   width: string,
