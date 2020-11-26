@@ -1,3 +1,5 @@
+export const DRAWER_TITLE = 'Location Details';
+
 export const LOCATIONS_TABLE_COLUMN = [
   {
     title: 'Name',

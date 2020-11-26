@@ -3,7 +3,11 @@ import { useQuery, useReactiveVar } from '@apollo/client';
 
 import { GRAPHQL_FETCH_POLICY } from '../../../common/constants/graphql';
 
-import { GET_EPISODES, GET_EPISODE_BY_ID } from '../../../apollo/queries';
+import {
+  GET_EPISODES,
+  GET_EPISODE_BY_ID,
+} from '../../../apollo/queries/episodes';
+
 import { selectedListItemVar } from '../../../apollo/cache';
 
 import EpisodesModel from '../model/EpisodesModel';
@@ -25,8 +29,8 @@ const useEpisodesFetchDetails = () => {
   });
 
   const { data: { episode } = {} } = useQuery(GET_EPISODE_BY_ID, {
+    fetchPolicy: !isDrawerOpen ? CACHE_ONLY : CACHE_FIRST,
     variables: {
-      skip: !isDrawerOpen ? CACHE_ONLY : CACHE_FIRST,
       id: selectedItemId,
     },
   });

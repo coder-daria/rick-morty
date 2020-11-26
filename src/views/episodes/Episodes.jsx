@@ -4,9 +4,7 @@ import { Drawer, Error, PageLayout } from '../../components';
 import EpisodeDetails from './episode-details/EpisodeDetails';
 import useEpisodesFetchDetails from './hooks/use-episodes-fetch-details';
 
-import { EPISODES_TABLE_COLUMN } from './constants';
-
-const DRAWER_TITLE = 'Episode Details';
+import { EPISODES_TABLE_COLUMN, DRAWER_TITLE } from './constants';
 
 function Episodes() {
   const {

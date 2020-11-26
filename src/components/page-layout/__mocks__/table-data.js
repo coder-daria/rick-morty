@@ -32,11 +32,13 @@ export const TABLE_DATA = {
   ],
   loading: false,
   pageInfo: PAGE_INFO,
-  tableData: [{
+  tableData: [
+    {
       id: 1,
       name: 'Rick Sanchez',
       species: 'Alien',
       ...CHARACTER_NOT_FORMATED_MOCKED_DETAILS,
-    }],
+    },
+  ],
   setCurrentPage: jest.fn(),
 };

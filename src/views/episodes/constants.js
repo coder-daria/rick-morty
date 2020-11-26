@@ -1,3 +1,5 @@
+export const DRAWER_TITLE = 'Episode Details';
+
 export const EPISODES_TABLE_COLUMN = [
   {
     dataIndex: 'name',

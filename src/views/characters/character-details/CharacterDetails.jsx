@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import { instanceOf, shape, string } from 'prop-types';
 import { Col, Divider } from 'antd';
+import { v4 as uuid } from 'uuid';
+import { map } from 'ramda';
 
 import CharacterModel from '../model/CharacterModel';
 import { StyledRow, CharacterImg } from './CharacterDetails.styles';
@@ -14,27 +16,29 @@ function CharacterDetails({ character }) {
 
   return (
     <div>
-      {Object.keys(characterDetails).map(item => (
-        <StyledRow key={item}>
-          {item === 'name' && (
-            <span>{characterDetails.name || NO_DATA_PLACEHOLDER}</span>
-          )}
-          {item === 'image' && (
-            <>
-              <CharacterImg alt={item} src={characterDetails[item]} />
-              <Divider />
-            </>
-          )}
-          {item !== 'name' && item !== 'image' && (
-            <>
-              <Col span={12}>{item}</Col>
-              <Col span={12}>
-                {characterDetails[item] || NO_DATA_PLACEHOLDER}
-              </Col>
-            </>
-          )}
-        </StyledRow>
-      ))}
+      {map(item => {
+        const isNameKey = item === 'name';
+        const isImageKey = item === 'image';
+        const value = characterDetails[item];
+
+        return (
+          <StyledRow key={uuid()}>
+            {isNameKey && <span>{value || NO_DATA_PLACEHOLDER}</span>}
+            {isImageKey && (
+              <>
+                <CharacterImg fallback={item} alt={item} src={value} />
+                <Divider />
+              </>
+            )}
+            {!isNameKey && !isImageKey && (
+              <>
+                <Col span={12}>{item}</Col>
+                <Col span={12}>{value || NO_DATA_PLACEHOLDER}</Col>
+              </>
+            )}
+          </StyledRow>
+        );
+      }, Object.keys(characterDetails))}
     </div>
   );
 }

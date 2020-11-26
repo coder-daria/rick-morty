@@ -3,7 +3,11 @@ import { useQuery, useReactiveVar } from '@apollo/client';
 
 import { GRAPHQL_FETCH_POLICY } from '../../../common/constants/graphql';
 
-import { GET_LOCATIONS, GET_LOCATION_BY_ID } from '../../../apollo/queries';
+import {
+  GET_LOCATIONS,
+  GET_LOCATION_BY_ID,
+} from '../../../apollo/queries/locations';
+
 import { selectedListItemVar } from '../../../apollo/cache';
 
 import LocationsModel from '../model/LocationsModel';
@@ -25,8 +29,8 @@ const useLocationsFetchDetails = () => {
   });
 
   const { data: { location } = {} } = useQuery(GET_LOCATION_BY_ID, {
+    fetchPolicy: !isDrawerOpen ? CACHE_ONLY : CACHE_FIRST,
     variables: {
-      skip: !isDrawerOpen ? CACHE_ONLY : CACHE_FIRST,
       id: selectedItemId,
     },
   });

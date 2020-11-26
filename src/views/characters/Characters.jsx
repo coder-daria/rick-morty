@@ -4,15 +4,13 @@ import { Drawer, Error, PageLayout } from '../../components';
 import CharacterDetails from './character-details/CharacterDetails';
 import useCharactersFetchDetails from './hooks/use-characters-fetch-details';
 
-import { CHARACTERS_TABLE_COLUMN } from './constants';
-
-const DRAWER_TITLE = 'Character Details';
+import { DRAWER_TITLE, CHARACTERS_TABLE_COLUMN } from './constants';
 
 function Characters() {
   const {
-    error,
     character,
     characters,
+    error,
     isDrawerOpen,
     loading,
     pageInfo,
@@ -27,8 +25,8 @@ function Characters() {
   return (
     <div>
       <PageLayout
-        error={error}
         columns={CHARACTERS_TABLE_COLUMN}
+        error={error}
         loading={loading}
         pageInfo={pageInfo}
         setCurrentPage={setCurrentPage}

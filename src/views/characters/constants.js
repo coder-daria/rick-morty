@@ -1,3 +1,5 @@
+export const DRAWER_TITLE = 'Character Details';
+
 export const CHARACTERS_TABLE_COLUMN = [
   {
     dataIndex: 'name',

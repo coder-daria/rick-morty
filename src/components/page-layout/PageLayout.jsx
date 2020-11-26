@@ -6,11 +6,15 @@ import {
   EMPTY_OBJECT,
   EMPTY_STRING,
 } from '../../common/constants/index';
+
 import { selectedListItemVar } from '../../apollo/cache';
 
 import { StyledTable, StyledButton, Bold, PageInfo } from './PageLayout.styles';
 
 const NO_ENTRIES_PLACEHOLDER = 0;
+
+const TABLE_HEIGHT = 700;
+const TABLE_ITEMS_PER_PAGE = 20;
 
 function PageLayout({
   columns,
@@ -49,6 +53,7 @@ function PageLayout({
   const handleSetCurrentPage = useCallback(
     page => {
       const currentPage = page.current;
+
       if (nextPage === currentPage) {
         setCurrentPage(currentPage);
         setNextPage(currentPage + 1);
@@ -73,11 +78,11 @@ function PageLayout({
         dataSource={tableData}
         pagination={{
           position: ['topLeft'],
-          pageSize: 20,
+          pageSize: TABLE_ITEMS_PER_PAGE,
           total: pageInfo.count,
           simple: true,
         }}
-        scroll={{ y: 700 }}
+        scroll={{ y: TABLE_HEIGHT }}
       />
     </div>
   );

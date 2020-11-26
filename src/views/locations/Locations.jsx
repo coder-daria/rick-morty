@@ -4,9 +4,7 @@ import { Drawer, Error, PageLayout } from '../../components';
 import LocationDetails from './location-details/LocationDetails';
 import useLocationsFetchDetails from './hooks/use-locations-fetch-details';
 
-import { LOCATIONS_TABLE_COLUMN } from './constants';
-
-const DRAWER_TITLE = 'Location Details';
+import { DRAWER_TITLE, LOCATIONS_TABLE_COLUMN } from './constants';
 
 function Locations() {
   const {

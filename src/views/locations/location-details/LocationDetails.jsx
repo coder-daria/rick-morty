@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import { instanceOf, shape, string } from 'prop-types';
 import { Col } from 'antd';
+import { v4 as uuid } from 'uuid';
+import { map } from 'ramda';
 
 import { renderCharactersNames } from '../../../common/utils/characters';
 
@@ -15,16 +17,19 @@ function LocationDetails({ location }) {
 
   return (
     <div>
-      {Object.keys(locationDetails).map(item => (
-        <StyledRow key={item}>
-          <Col span={12}>{item}</Col>
-          <Col span={12}>
-            {item === 'residents'
-              ? renderCharactersNames(locationDetails[item])
-              : locationDetails[item] || NO_DATA_PLACEHOLDER}
-          </Col>
-        </StyledRow>
-      ))}
+      {map(
+        item => (
+          <StyledRow key={uuid()}>
+            <Col span={12}>{item}</Col>
+            <Col span={12}>
+              {item === 'residents'
+                ? renderCharactersNames(locationDetails[item])
+                : locationDetails[item] || NO_DATA_PLACEHOLDER}
+            </Col>
+          </StyledRow>
+        ),
+        Object.keys(locationDetails),
+      )}
     </div>
   );
 }

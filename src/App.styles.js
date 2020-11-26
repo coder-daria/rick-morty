@@ -14,6 +14,7 @@ export const StyledTabs = styled(Tabs)`
       margin-left: 10px;
     }
   }
+
   .ant-tabs-tab-btn {
     font-size: 1.2rem;
     padding: 0 15px;

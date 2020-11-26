@@ -3,7 +3,10 @@ import { useQuery, useReactiveVar } from '@apollo/client';
 
 import { GRAPHQL_FETCH_POLICY } from '../../../common/constants/graphql';
 
-import { GET_CHARACTERS, GET_CHARACTER_BY_ID } from '../../../apollo/queries';
+import {
+  GET_CHARACTERS,
+  GET_CHARACTER_BY_ID,
+} from '../../../apollo/queries/characters';
 import { selectedListItemVar } from '../../../apollo/cache';
 
 import CharactersModel from '../model/CharactersModel';
@@ -46,7 +49,6 @@ const useCharactersFetchDetails = () => {
   return {
     character,
     characters,
-    currentPage,
     error,
     isDrawerOpen,
     loading,
