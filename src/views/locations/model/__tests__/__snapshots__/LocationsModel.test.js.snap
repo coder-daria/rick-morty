@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocationsModel should return locations data 1`] = `
+Object {
+  "locations": Array [
+    Object {
+      "created": "11/25/2019",
+      "dimension": "",
+      "id": 1,
+      "name": "Sunny day",
+      "residents": 1,
+      "type": "",
+    },
+  ],
+  "pageInfo": Object {
+    "count": 1,
+    "next": null,
+    "pages": 1,
+    "prev": null,
+  },
+}
+`;

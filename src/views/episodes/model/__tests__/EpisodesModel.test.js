@@ -5,7 +5,7 @@ const {
   episodes: { results, info },
 } = EPISODES_MOCKED_DATA;
 
-const [FIRST_CHARACTER] = results;
+const [FIRST_EPISODE] = results;
 
 describe('CharactersModel', () => {
   it('should return episodes data', () => {
@@ -14,8 +14,8 @@ describe('CharactersModel', () => {
     expect(result).toMatchSnapshot({
       episodes: [
         {
-          ...FIRST_CHARACTER,
-          characters: FIRST_CHARACTER.characters.length,
+          ...FIRST_EPISODE,
+          characters: FIRST_EPISODE.characters.length,
         },
       ],
       pageInfo: info,

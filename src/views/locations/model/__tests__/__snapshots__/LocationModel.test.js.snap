@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocationModel should return location data 1`] = `
+Object {
+  "created": "11/25/2019",
+  "dimension": "",
+  "name": "Earth",
+  "residents": Array [
+    Object {
+      "name": "Tom",
+    },
+  ],
+  "type": "",
+}
+`;
