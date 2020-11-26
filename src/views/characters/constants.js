@@ -1,22 +1,26 @@
 export const CHARACTERS_TABLE_COLUMN = [
   {
-    title: 'Name',
     dataIndex: 'name',
-    key: 'name',
+    ellipsis: true,
+    title: 'Name',
+    width: '15%',
   },
   {
-    title: 'Species',
     dataIndex: 'species',
-    key: 'species',
+    ellipsis: true,
+    title: 'Species',
+    width: '10%',
   },
   {
-    title: 'Origin',
     dataIndex: 'origin',
-    key: 'origin',
+    ellipsis: true,
+    title: 'Origin',
+    width: '20%',
   },
   {
-    title: 'Location',
     dataIndex: 'location',
-    key: 'location',
+    ellipsis: true,
+    title: 'Location',
+    width: '20%',
   },
 ];

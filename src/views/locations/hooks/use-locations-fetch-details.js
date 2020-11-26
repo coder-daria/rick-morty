@@ -14,6 +14,7 @@ const useLocationsFetchDetails = () => {
 
   const { data, loading, fetchMore, error } = useQuery(GET_LOCATIONS, {
     fetchPolicy: 'cache-first',
+    notifyOnNetworkStatusChange: true,
     variables: {
       page: currentPage,
     },

@@ -14,6 +14,7 @@ const useCharactersFetchDetails = () => {
 
   const { data, loading, fetchMore, error } = useQuery(GET_CHARACTERS, {
     fetchPolicy: 'cache-first',
+    notifyOnNetworkStatusChange: true,
     variables: {
       page: currentPage,
     },

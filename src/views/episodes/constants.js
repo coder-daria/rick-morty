@@ -1,17 +1,16 @@
 export const EPISODES_TABLE_COLUMN = [
   {
     dataIndex: 'name',
-    key: 'name',
     title: 'Name',
+    width: '15%',
   },
   {
     dataIndex: 'episode',
-    key: 'episode',
     title: 'Episode',
+    width: '15%',
   },
   {
     dataIndex: 'characters',
-    key: 'characters',
     title: 'Number of characters',
   },
 ];

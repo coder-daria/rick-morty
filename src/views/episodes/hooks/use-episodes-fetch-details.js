@@ -14,6 +14,7 @@ const useEpisodesFetchDetails = () => {
 
   const { data, loading, fetchMore, error } = useQuery(GET_EPISODES, {
     fetchPolicy: 'cache-first',
+    notifyOnNetworkStatusChange: true,
     variables: {
       page: currentPage,
     },

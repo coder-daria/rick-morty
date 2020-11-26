@@ -1,11 +1,12 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { instanceOf, func, number, shape, bool } from 'prop-types';
-import { Button } from 'antd';
 
 import { EMPTY_ARRAY, EMPTY_OBJECT } from '../../common/constants';
 import { selectedListItemVar } from '../../apollo/cache';
 
-import { StyledTable, Bold, PageInfo } from './PageLayout.styles';
+import { StyledTable, StyledButton, Bold, PageInfo } from './PageLayout.styles';
+
+const NO_ENTRIES_PLACEHOLDER = 0;
 
 function PageLayout({
   columns,
@@ -19,14 +20,14 @@ function PageLayout({
 
   const renderActionButton = useCallback(
     data => (
-      <Button
+      <StyledButton
         onClick={() => {
           selectedListItemVar(data.id);
           toggleDrawer(true);
         }}
       >
         View
-      </Button>
+      </StyledButton>
     ),
     [toggleDrawer],
   );
@@ -35,16 +36,18 @@ function PageLayout({
     () => ({
       title: '',
       key: '',
+      align: 'right',
       render: data => renderActionButton(data),
     }),
     [renderActionButton],
   );
 
   const handleSetCurrentPage = useCallback(
-    e => {
-      if (nextPage === e.current) {
-        setCurrentPage(e.current);
-        setNextPage(e.current + 1);
+    page => {
+      const currentPage = page.current;
+      if (nextPage === currentPage) {
+        setCurrentPage(currentPage);
+        setNextPage(currentPage + 1);
       }
     },
     [nextPage, setCurrentPage],
@@ -55,12 +58,11 @@ function PageLayout({
       <PageInfo>
         <span>
           Showing<Bold>{tableData?.length}</Bold>
-          of<Bold>{pageInfo?.count}</Bold>entries
+          of<Bold>{pageInfo?.count || NO_ENTRIES_PLACEHOLDER}</Bold>entries
         </span>
       </PageInfo>
       <StyledTable
         rowKey={record => record.id}
-        tableLayout='fixed'
         loading={loading}
         onChange={handleSetCurrentPage}
         columns={[...columns, actionColumn]}
