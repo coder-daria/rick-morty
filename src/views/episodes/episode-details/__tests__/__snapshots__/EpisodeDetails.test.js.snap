@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EpisodeDetails /> should match the snapshot 1`] = `
+<div>
+  <Styled(Row)
+    key="name"
+  >
+    <Col
+      span={12}
+    >
+      name
+    </Col>
+    <Col
+      span={12}
+    >
+      Sunny day
+    </Col>
+  </Styled(Row)>
+  <Styled(Row)
+    key="episode"
+  >
+    <Col
+      span={12}
+    >
+      episode
+    </Col>
+    <Col
+      span={12}
+    >
+      0E12
+    </Col>
+  </Styled(Row)>
+  <Styled(Row)
+    key="characters"
+  >
+    <Col
+      span={12}
+    >
+      characters
+    </Col>
+    <Col
+      span={12}
+    >
+      <div
+        key="Tomundefined"
+      >
+        Tom
+      </div>
+    </Col>
+  </Styled(Row)>
+  <Styled(Row)
+    key="air date"
+  >
+    <Col
+      span={12}
+    >
+      air date
+    </Col>
+    <Col
+      span={12}
+    >
+      11/25/2020, 4:59:08 PM
+    </Col>
+  </Styled(Row)>
+  <Styled(Row)
+    key="created"
+  >
+    <Col
+      span={12}
+    >
+      created
+    </Col>
+    <Col
+      span={12}
+    >
+      11/25/2019, 4:59:08 PM
+    </Col>
+  </Styled(Row)>
+</div>
+`;

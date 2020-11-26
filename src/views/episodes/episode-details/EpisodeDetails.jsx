@@ -35,10 +35,12 @@ function EpisodeDetails({ episode }) {
 
 EpisodeDetails.propTypes = {
   episode: shape({
+    air_date: string,
     characters: instanceOf(Array),
     created: string,
-    'air date': string,
     episode: string,
+    id: string,
+    name: string,
   }).isRequired,
 };
 

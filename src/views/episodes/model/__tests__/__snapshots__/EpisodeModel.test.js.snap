@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EpisodeModel should return episode data 1`] = `
+Object {
+  "air date": "11/25/2020, 4:59:08 PM",
+  "characters": Array [
+    Object {
+      "name": "Tom",
+    },
+  ],
+  "created": "11/25/2019, 4:59:08 PM",
+  "episode": "0E12",
+  "name": "Sunny day",
+}
+`;
