@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useQuery, useReactiveVar } from '@apollo/client';
 
-import { GRAPHQL_FETCH_POLICY } from '../../../common/constants/graphql';
-
 import {
   GET_EPISODES,
   GET_EPISODE_BY_ID,
@@ -12,8 +10,6 @@ import { selectedListItemVar } from '../../../apollo/cache';
 
 import EpisodesModel from '../model/EpisodesModel';
 
-const { CACHE_AND_NETWORK, CACHE_ONLY } = GRAPHQL_FETCH_POLICY;
-
 const useEpisodesFetchDetails = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isDrawerOpen, toggleDrawer] = useState(false);
@@ -21,7 +17,6 @@ const useEpisodesFetchDetails = () => {
   const selectedItemId = useReactiveVar(selectedListItemVar);
 
   const { data, loading, fetchMore, error } = useQuery(GET_EPISODES, {
-    fetchPolicy: CACHE_AND_NETWORK,
     notifyOnNetworkStatusChange: true,
     variables: {
       page: currentPage,
@@ -29,7 +24,7 @@ const useEpisodesFetchDetails = () => {
   });
 
   const { data: { episode } = {} } = useQuery(GET_EPISODE_BY_ID, {
-    fetchPolicy: !isDrawerOpen ? CACHE_ONLY : CACHE_AND_NETWORK,
+    skip: !isDrawerOpen,
     variables: {
       id: selectedItemId,
     },
