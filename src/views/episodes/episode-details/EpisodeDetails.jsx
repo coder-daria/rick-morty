@@ -19,6 +19,7 @@ function EpisodeDetails({ episode }) {
     <div>
       {map(item => {
         const value = episodeDetails[item];
+
         return (
           <StyledRow key={uuid()}>
             <Col span={12}>{item}</Col>

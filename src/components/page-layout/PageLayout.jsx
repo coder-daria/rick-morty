@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { instanceOf, func, number, shape, bool } from 'prop-types';
 
 import {
@@ -12,9 +12,7 @@ import { selectedListItemVar } from '../../apollo/cache';
 import { StyledTable, StyledButton, Bold, PageInfo } from './PageLayout.styles';
 
 const NO_ENTRIES_PLACEHOLDER = 0;
-
 const TABLE_HEIGHT = 700;
-const TABLE_ITEMS_PER_PAGE = 20;
 
 function PageLayout({
   columns,
@@ -24,8 +22,6 @@ function PageLayout({
   tableData,
   toggleDrawer,
 }) {
-  const [nextPage, setNextPage] = useState(2);
-
   const renderActionButton = useCallback(
     data => (
       <StyledButton
@@ -51,22 +47,22 @@ function PageLayout({
   );
 
   const handleSetCurrentPage = useCallback(
-    page => {
-      const currentPage = page.current;
-
-      if (nextPage === currentPage) {
-        setCurrentPage(currentPage);
-        setNextPage(currentPage + 1);
-      }
-    },
-    [nextPage, setCurrentPage],
+    page => setCurrentPage(page.current),
+    [setCurrentPage],
   );
+
+  const pageSize =
+    pageInfo?.next === null
+      ? (pageInfo?.count - tableData.length) / pageInfo.prev
+      : tableData.length;
+
+  const totalReachedItems = pageSize * (pageInfo.prev || 0) + tableData.length;
 
   return (
     <div>
       <PageInfo>
         <span>
-          Showing<Bold>{tableData?.length}</Bold>
+          Showing<Bold>{totalReachedItems}</Bold>
           of<Bold>{pageInfo?.count || NO_ENTRIES_PLACEHOLDER}</Bold>entries
         </span>
       </PageInfo>
@@ -78,7 +74,7 @@ function PageLayout({
         dataSource={tableData}
         pagination={{
           position: ['topLeft'],
-          pageSize: TABLE_ITEMS_PER_PAGE,
+          pageSize,
           total: pageInfo.count,
           simple: true,
         }}

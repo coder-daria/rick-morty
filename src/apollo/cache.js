@@ -2,41 +2,32 @@ import { InMemoryCache, makeVar } from '@apollo/client';
 
 export const selectedListItemVar = makeVar(0);
 
-function mergeLists(existing, incoming) {
-  let results = [];
-
-  if (existing) {
-    results = [...existing.results, ...incoming.results];
-  } else {
-    results = incoming.results;
-  }
-
-  return {
-    info: incoming.info,
-    results,
-  };
-}
-
 const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
         characters: {
-          keyArgs: [],
-          merge(existing, incoming) {
-            return mergeLists(existing, incoming);
+          keyArgs: false,
+          merge(_existing, incoming) {
+            return {
+              ...incoming,
+            };
           },
         },
         episodes: {
-          keyArgs: [],
-          merge(existing, incoming) {
-            return mergeLists(existing, incoming);
+          keyArgs: false,
+          merge(_existing, incoming) {
+            return {
+              ...incoming,
+            };
           },
         },
         locations: {
-          keyArgs: [],
-          merge(existing, incoming) {
-            return mergeLists(existing, incoming);
+          keyArgs: false,
+          merge(_existing, incoming) {
+            return {
+              ...incoming,
+            };
           },
         },
       },
