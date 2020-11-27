@@ -9,9 +9,9 @@ import {
 
 import { selectedListItemVar } from '../../apollo/cache';
 
-import { StyledTable, StyledButton, Bold, PageInfo } from './PageLayout.styles';
+import { StyledTable, StyledButton } from './PageLayout.styles';
 
-const NO_ENTRIES_PLACEHOLDER = 0;
+const NO_DATA_PLACEHOLDER = 0;
 const TABLE_HEIGHT = 700;
 
 function PageLayout({
@@ -56,16 +56,16 @@ function PageLayout({
       ? (pageInfo?.count - tableData.length) / pageInfo.prev
       : tableData.length;
 
-  const totalReachedItems = pageSize * (pageInfo.prev || 0) + tableData.length;
+  const totalReachedItems =
+    pageSize * (pageInfo.prev || NO_DATA_PLACEHOLDER) + tableData.length;
+
+  const showPaginationDetails = useCallback(
+    total => `Showing ${totalReachedItems} of ${total} entries`,
+    [totalReachedItems],
+  );
 
   return (
     <div>
-      <PageInfo>
-        <span>
-          Showing<Bold>{totalReachedItems}</Bold>
-          of<Bold>{pageInfo?.count || NO_ENTRIES_PLACEHOLDER}</Bold>entries
-        </span>
-      </PageInfo>
       <StyledTable
         rowKey={record => record.id}
         loading={loading}
@@ -73,10 +73,11 @@ function PageLayout({
         columns={[...columns, actionColumn]}
         dataSource={tableData}
         pagination={{
-          position: ['topLeft'],
           pageSize,
+          position: ['topRight'],
+          showSizeChanger: false,
+          showTotal: showPaginationDetails,
           total: pageInfo.count,
-          simple: true,
         }}
         scroll={{ y: TABLE_HEIGHT }}
       />

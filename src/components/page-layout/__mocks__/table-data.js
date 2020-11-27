@@ -40,5 +40,6 @@ export const TABLE_DATA = {
       ...CHARACTER_NOT_FORMATED_MOCKED_DETAILS,
     },
   ],
+  toggleDrawer: jest.fn(),
   setCurrentPage: jest.fn(),
 };

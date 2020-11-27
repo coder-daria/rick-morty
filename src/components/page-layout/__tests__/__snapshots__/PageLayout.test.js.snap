@@ -2,19 +2,6 @@
 
 exports[`<PageLayout /> should match the snapshot 1`] = `
 <div>
-  <styled.div>
-    <span>
-      Showing
-      <styled.span>
-        1
-      </styled.span>
-      of
-      <styled.span>
-        1
-      </styled.span>
-       entries
-    </span>
-  </styled.div>
   <Styled(Table)
     columns={
       Array [
@@ -39,9 +26,10 @@ exports[`<PageLayout /> should match the snapshot 1`] = `
           "title": "Location",
         },
         Object {
-          "key": "action",
+          "align": "right",
+          "key": "",
           "render": [Function],
-          "title": "Action",
+          "title": "",
         },
       ]
     }
@@ -64,11 +52,12 @@ exports[`<PageLayout /> should match the snapshot 1`] = `
     onChange={[Function]}
     pagination={
       Object {
-        "pageSize": 20,
+        "pageSize": NaN,
         "position": Array [
-          "topLeft",
+          "topRight",
         ],
-        "simple": true,
+        "showSizeChanger": false,
+        "showTotal": [Function],
         "total": 1,
       }
     }
@@ -78,7 +67,6 @@ exports[`<PageLayout /> should match the snapshot 1`] = `
         "y": 700,
       }
     }
-    tableLayout="fixed"
   />
 </div>
 `;
